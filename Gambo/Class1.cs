@@ -153,7 +153,7 @@ namespace Gambo
                      Input.GetKey(KeyCode.LeftShift))
             {
                 JSONNode traduction = SingletonMonoBehaviour<LocalizationManager>.Instance.GetTraduction();
-                SingletonMonoBehaviour<LocalizationManager>.Instance.
+                
                 string basePath = Path.Combine(Paths.PluginPath, "Gambo", $"language{GetCurrLangSuffix()}.json");
                 
                 File.WriteAllText(basePath,traduction.ToString());
