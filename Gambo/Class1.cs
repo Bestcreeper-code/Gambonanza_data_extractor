@@ -64,11 +64,11 @@ namespace Gambo
             // Gambit_GrandMaLetter
                 // TokenToBuy
                 // PawnPieceBehaviour
-
+            
         
             if (Input.GetKeyDown(KeyCode.G) && Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.LeftShift))
             {
-                string path = Path.Combine(Paths.PluginPath, "Gambo", "gambits.txt");
+                string path = Path.Combine(Paths.PluginPath, "Gambo", $"gambits{GetCurrLangSuffix()}.txt");
                 JSONNode traduction = SingletonMonoBehaviour<LocalizationManager>.Instance.GetTraduction();
 
                 using (var writer = new StreamWriter(path, false))
@@ -90,7 +90,7 @@ namespace Gambo
             } 
             else if (Input.GetKeyDown(KeyCode.S) && Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.LeftShift))
             {
-                string path = Path.Combine(Paths.PluginPath, "Gambo", "strains.txt");
+                string path = Path.Combine(Paths.PluginPath, "Gambo", $"strains{GetCurrLangSuffix()}.txt");
                 JSONNode traduction = SingletonMonoBehaviour<LocalizationManager>.Instance.GetTraduction();
                 
                 using (var writer = new StreamWriter(path, false))
@@ -149,6 +149,18 @@ namespace Gambo
                 
                 
             }
+            else if (Input.GetKeyDown(KeyCode.T) && Input.GetKey(KeyCode.LeftControl) &&
+                     Input.GetKey(KeyCode.LeftShift))
+            {
+                JSONNode traduction = SingletonMonoBehaviour<LocalizationManager>.Instance.GetTraduction();
+                SingletonMonoBehaviour<LocalizationManager>.Instance.
+                string basePath = Path.Combine(Paths.PluginPath, "Gambo", $"language{GetCurrLangSuffix()}.json");
+                
+                File.WriteAllText(basePath,traduction.ToString());
+                
+                
+                
+            }
             
             Texture2D ExtractSprite(Sprite sprite)
             {
@@ -171,7 +183,49 @@ namespace Gambo
 
                 return readable;
             }
-                
+
+            string GetCurrLangSuffix()
+            {
+                string str;
+                switch (DataManager.Instance.Data.CurrentLanguage)
+                {
+                    case Language.ENGLISH:
+                        str = "_en";
+                        break;
+                    case Language.FRANCAIS:
+                        str = "_fr";
+                        break;
+                    case Language.GERMAN:
+                        str = "_ge";
+                        break;
+                    case Language.SPANISH:
+                        str = "_sp";
+                        break;
+                    case Language.JAPANESE:
+                        str = "_jp";
+                        break;
+                    case Language.KOREAN:
+                        str = "_ko";
+                        break;
+                    case Language.POLISH:
+                        str = "_pl";
+                        break;
+                    case Language.PORTUGUESE:
+                        str = "_pt_br";
+                        break;
+                    case Language.RUSSIAN:
+                        str = "_ru";
+                        break;
+                    case Language.SIMPLIFIED_CHINESE:
+                        str = "_zh";
+                        break;
+                    default:
+                        str = "_tr";
+                        break;
+                }
+
+                return str;
+            }
                 
             // if (Input.GetKeyDown(KeyCode.U))
             // {
