@@ -11,3 +11,5 @@ This mod adds new keybinds to extract data about the game:
 - **ctrl+shift+T**: writes the whole translation json file to **language{suffix}.json**
 
 #### {suffix} is going to be the short for whaterver the current language is (you need to change the current langauge in the ingame settings to get the files for another language)
+
+-# also fun addition: the rare main menu event is enforced every time 
